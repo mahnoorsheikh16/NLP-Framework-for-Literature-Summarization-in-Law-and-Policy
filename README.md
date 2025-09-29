@@ -1,1 +1,1 @@
-# NLP-Framework-for-Literature-Summarization-in-Law-and-Policy
+# NLP Framework for Literature Summarization in Law and Policy
