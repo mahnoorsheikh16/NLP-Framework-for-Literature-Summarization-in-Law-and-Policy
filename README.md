@@ -11,4 +11,24 @@ The objective is to build a chatbot interface powered by summarisation models fo
 2. [Methodology](#methodology)
 
 ## Dataset
-The [BillSum](https://huggingface.co/datasets/FiscalNote/billsum) dataset is a summarisation of US Congressional and California state bills. The US bills were collected from the Govinfo service provided by the United States Government Publishing Office (GPO) under CC0-1.0 license. The California bills were collected from the 2015-2016 session from the legislature’s website. The [Government report](https://huggingface.co/datasets/ccdv/govreport-summarization?) dataset consists of reports written by government research agencies including Congressional Research Service and U.S. Government Accountability Office.
+The [BillSum](https://huggingface.co/datasets/FiscalNote/billsum) dataset is a summarisation of US Congressional and California state bills. The US bills were collected from the Govinfo service provided by the United States Government Publishing Office (GPO) under CC0-1.0 license. The California bills were collected from the 2015-2016 session from the legislature’s website. The [Government report](https://huggingface.co/datasets/ccdv/govreport-summarization?) dataset consists of reports written by government research agencies, including the Congressional Research Service and the U.S. Government Accountability Office.
+
+The BillSum dataset consists of three parts: US training bills (18949), US test bills (3269) and California test bills (1237). It contains the following features:
+
+`text`: bill text
+
+`summary`: human-written summary of the bill
+
+`title`: title of the bill
+
+`text_len`: number of chars in text
+
+`sum_len`: number of chars in summary
+
+The GovReport dataset consists of 17517 training, 973 validation and 973 test observations. It contains the following features:
+
+`id`: paper id
+
+`report`: body of the report
+
+`summary`: summary of the report
