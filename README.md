@@ -34,4 +34,4 @@ The GovReport dataset consists of 17517 training, 973 validation and 973 test ob
 `summary`: summary of the report
 
 ## Methodology
-Preprocessing datasets involves cleaning, tokenising, and chunking long documents. Baseline extractive methods and fine-tuned models like PEGASUS or Longformer Encoder-Decoder (LED) for long documents will be developed. For chatbot integration, a retrieval layer will get relevant bills/reports based on a user’s query and pass it through the summarisation model to generate concise outputs. Evaluation metrics employed are ROUGE, BLEU, and cosine similarity.
+Preprocessing datasets involves cleaning, tokenising, and chunking long documents. The baseline models are extractive methods, which will be compared to fine-tuned models like PEGASUS or Longformer Encoder-Decoder (LED) for long documents. For chatbot integration, a retrieval layer will get relevant bills/reports based on a user’s query and pass them through the summarisation model to generate concise outputs. Evaluation metrics employed are ROUGE, BLEU, and cosine similarity.
