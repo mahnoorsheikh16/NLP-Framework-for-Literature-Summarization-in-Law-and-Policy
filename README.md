@@ -37,5 +37,7 @@ The GovReport dataset consists of 17517 training, 973 validation and 973 test ob
 Preprocessing datasets involves cleaning, tokenising, and chunking long documents. The baseline models are extractive methods, which will be compared to fine-tuned models like PEGASUS or Longformer Encoder-Decoder (LED) for long documents. For chatbot integration, a retrieval layer will get relevant bills/reports based on a user’s query and pass them through the summarisation model to generate concise outputs. Evaluation metrics employed are ROUGE, BLEU, and cosine similarity.
 
 `va_working_area` has everything tested and worked on - it is a rough workspace which helped create embeddings, create functions, make datasets, etc.
+
 `final_work_va` has all the RAG implementation without the messy aspect of the work area. just plug and play
+
 [Resouces to run final_work_va](https://michiganstate-my.sharepoint.com/:f:/g/personal/vennamva_msu_edu/EtaGg0aQghtIiHeymObZ99EBpiZFOMWgQrJw0iWLJLdM6g?e=GIbJK3) - Anyone within MSU can access
