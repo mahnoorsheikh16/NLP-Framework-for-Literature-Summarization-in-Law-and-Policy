@@ -8,9 +8,9 @@ The objective is to build a chatbot interface powered by summarisation models fo
 
 ## Table of Contents
 1. [Dataset](#dataset)
-2. [Summarisation Pipeline](#summarizationpipeline)
-3. [Question Answering (QA) & Retrieval (RAG-style)](#questionanswering(qa)&retrieval(rag-style))
-4. [Notebook Structure](#notebookstructure)
+2. [Summarisation Pipeline](#summarisation-pipeline)
+3. [Question Answering (QA) & Retrieval (RAG-style)](#question-answering-qa-retrieval-rag-style)
+4. [Notebook Structure](#notebook-structure)
 
 ## Dataset
 The [BillSum](https://huggingface.co/datasets/FiscalNote/billsum) dataset is a summarisation of US Congressional and California state bills. The US bills were collected from the Govinfo service provided by the United States Government Publishing Office (GPO) under CC0-1.0 license. The California bills were collected from the 2015-2016 session from the legislature’s website. The [Government report](https://huggingface.co/datasets/ccdv/govreport-summarization?) dataset consists of reports written by government research agencies, including the Congressional Research Service and the U.S. Government Accountability Office.
@@ -50,6 +50,8 @@ Rather than relying on fully generative answers, the system emphasises factual r
 This approach demonstrates how summarisation can act as a supporting layer for legal QA.
 
 ## Notebook Structure
+`SummarisationModel.ipynb` focuses exclusively on the summarisation pipeline.
+
 `va_working_area` has everything tested and worked on. It serves as an experimental workspace, which contains exploratory work used to create embeddings, test retrieval strategies, prototype functions, construct intermediate datasets, and validate modeling choices.
 
 `final_work_va` has the clean, finalised implementation of the QA retrieval pipeline without the messy aspect of the work area. Just plug and play.
