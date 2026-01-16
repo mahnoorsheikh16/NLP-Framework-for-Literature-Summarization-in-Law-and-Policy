@@ -8,7 +8,9 @@ The objective is to build a chatbot interface powered by summarisation models fo
 
 ## Table of Contents
 1. [Dataset](#dataset)
-2. [Methodology](#methodology)
+2. [Summarisation Pipeline](#summarizationpipeline)
+3. [Question Answering (QA) & Retrieval (RAG-style)](#questionanswering(qa)&retrieval(rag-style))
+4. [Notebook Structure](#notebookstructure)
 
 ## Dataset
 The [BillSum](https://huggingface.co/datasets/FiscalNote/billsum) dataset is a summarisation of US Congressional and California state bills. The US bills were collected from the Govinfo service provided by the United States Government Publishing Office (GPO) under CC0-1.0 license. The California bills were collected from the 2015-2016 session from the legislature’s website. The [Government report](https://huggingface.co/datasets/ccdv/govreport-summarization?) dataset consists of reports written by government research agencies, including the Congressional Research Service and the U.S. Government Accountability Office.
@@ -33,11 +35,23 @@ The GovReport dataset consists of 17517 training, 973 validation and 973 test ob
 
 `summary`: summary of the report
 
-## Methodology
-Preprocessing datasets involves cleaning, tokenising, and chunking long documents. The baseline models are extractive methods, which will be compared to fine-tuned models like PEGASUS or Longformer Encoder-Decoder (LED) for long documents. For chatbot integration, a retrieval layer will get relevant bills/reports based on a user’s query and pass them through the summarisation model to generate concise outputs. Evaluation metrics employed are ROUGE, BLEU, and cosine similarity.
+## Summarisation Pipeline
+The summarisation component focuses on generating concise, structured summaries of long legal and policy documents such as U.S. bills and government reports. Preprocessing involves extensive cleaning to remove boilerplate artifacts, followed by sentence tokenisation and token-aware chunking to handle documents exceeding standard transformer limits.
 
-`va_working_area` has everything tested and worked on - it is a rough workspace which helped create embeddings, create functions, make datasets, etc.
+As a baseline, an extractive TF-IDF cosine similarity approach is implemented to identify central sentences, serving as a reproducible performance floor. This is compared against fine-tuned abstractive transformer models, including DistilBART and long-document architectures such as Longformer Encoder-Decoder (LED), which are adapted for legal text using hierarchical chunk-level summarisation.
 
-`final_work_va` has all the RAG implementation without the messy aspect of the work area. just plug and play
+Evaluation is conducted using ROUGE-1, ROUGE-2, and ROUGE-L metrics, demonstrating substantial improvements of the fine-tuned models over extractive baselines. The summarisation pipeline is also designed to support downstream chatbot integration, where retrieved documents or sections can be summarised on demand while preserving legal context and structure.
 
-[Resouces to run final_work_va](https://michiganstate-my.sharepoint.com/:f:/g/personal/vennamva_msu_edu/EtaGg0aQghtIiHeymObZ99EBpiZFOMWgQrJw0iWLJLdM6g?e=GIbJK3) - Anyone within MSU can access
+## Question Answering (QA) & Retrieval (RAG-style)
+The QA component is designed to enable targeted information access over legal and policy documents through retrieval-based methods. Given a user query, documents are first segmented into semantically meaningful chunks, with dataset-specific tokenisers applied (e.g., T5 for BillSum and LED for GovReport). SentenceTransformer embeddings are computed for all chunks, and cosine similarity is used to retrieve the most relevant sections for a given query.
+
+Rather than relying on fully generative answers, the system emphasises factual reliability by retrieving the most relevant summarised content. A lightweight QA model is applied to rank and select the best supporting chunk, ensuring responses remain grounded in the source text. This retrieval-centric design enables fast, stable, and reproducible outputs while remaining computationally feasible in constrained environments.
+
+This approach demonstrates how summarisation can act as a supporting layer for legal QA.
+
+## Notebook Structure
+`va_working_area` has everything tested and worked on. It serves as an experimental workspace, which contains exploratory work used to create embeddings, test retrieval strategies, prototype functions, construct intermediate datasets, and validate modeling choices.
+
+`final_work_va` has the clean, finalised implementation of the QA retrieval pipeline without the messy aspect of the work area. Just plug and play.
+
+[Resouces to run final_work_va](https://michiganstate-my.sharepoint.com/:f:/g/personal/vennamva_msu_edu/EtaGg0aQghtIiHeymObZ99EBpiZFOMWgQrJw0iWLJLdM6g?e=GIbJK3) : Anyone within MSU can access.
