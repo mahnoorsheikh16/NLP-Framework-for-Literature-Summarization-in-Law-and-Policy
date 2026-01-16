@@ -9,7 +9,7 @@ The objective is to build a chatbot interface powered by summarisation models fo
 ## Table of Contents
 1. [Dataset](#dataset)
 2. [Summarisation Pipeline](#summarisation-pipeline)
-3. [Question Answering (QA) & Retrieval (RAG-style)](#question-answering-qa-retrieval-rag-style)
+3. [Question Answering and Retrieval (RAG-style)](#question-answering-and-retrieval-rag-style)
 4. [Notebook Structure](#notebook-structure)
 
 ## Dataset
@@ -42,7 +42,7 @@ As a baseline, an extractive TF-IDF cosine similarity approach is implemented to
 
 Evaluation is conducted using ROUGE-1, ROUGE-2, and ROUGE-L metrics, demonstrating substantial improvements of the fine-tuned models over extractive baselines. The summarisation pipeline is also designed to support downstream chatbot integration, where retrieved documents or sections can be summarised on demand while preserving legal context and structure.
 
-## Question Answering (QA) & Retrieval (RAG-style)
+## Question Answering and Retrieval (RAG-style)
 The QA component is designed to enable targeted information access over legal and policy documents through retrieval-based methods. Given a user query, documents are first segmented into semantically meaningful chunks, with dataset-specific tokenisers applied (e.g., T5 for BillSum and LED for GovReport). SentenceTransformer embeddings are computed for all chunks, and cosine similarity is used to retrieve the most relevant sections for a given query.
 
 Rather than relying on fully generative answers, the system emphasises factual reliability by retrieving the most relevant summarised content. A lightweight QA model is applied to rank and select the best supporting chunk, ensuring responses remain grounded in the source text. This retrieval-centric design enables fast, stable, and reproducible outputs while remaining computationally feasible in constrained environments.
